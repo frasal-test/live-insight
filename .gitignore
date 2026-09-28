@@ -1,0 +1,18 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+dist/
+out/
+.DS_Store
+
+# OAC exports: they contain the instance host, the exporting account, OCIDs and Object Storage names. Local only.
+*.dva
+dva-lab/templates/
+
+# OAC credentials and app settings (tokens, keys, instance URL): local only
+.secrets/
+tokens.json

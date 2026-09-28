@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "dataset": {
+    "platform": "oac",
+    "id": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#')",
+    "name": "Retail Orders"
+  },
+  "name": "Retail Orders - example",
+  "columns": [
+    {
+      "kind": "column",
+      "id": "Segment",
+      "source": "Customer Segment"
+    },
+    {
+      "kind": "column",
+      "id": "Category",
+      "source": "Product Category"
+    },
+    {
+      "kind": "column",
+      "id": "Sales",
+      "source": "Sales"
+    },
+    {
+      "kind": "date",
+      "id": "Year",
+      "source": "Order Date",
+      "grain": "year"
+    },
+    {
+      "kind": "date",
+      "id": "Quarter",
+      "source": "Order Date",
+      "grain": "quarter"
+    },
+    {
+      "kind": "calc",
+      "id": "AOV",
+      "caption": "Average order value",
+      "expression": "{Sales} / (COUNT(DISTINCT {Order ID}))",
+      "description": "Sales / distinct orders",
+      "is_measure": true
+    }
+  ],
+  "canvases": [
+    {
+      "title": "Sales",
+      "visuals": [
+        {
+          "kind": "bar",
+          "title": "In 2016 Technology sells the most",
+          "sort": "desc",
+          "roles": {
+            "measures": [
+              "Sales"
+            ],
+            "detail": [
+              "Category"
+            ]
+          },
+          "filters": [
+            {
+              "column": "Year",
+              "op": "in",
+              "values": [
+                "2016"
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "line",
+          "title": "Sales grow at year end",
+          "roles": {
+            "measures": [
+              "Sales"
+            ],
+            "detail": [
+              "Quarter"
+            ]
+          }
+        },
+        {
+          "kind": "bar",
+          "title": "Corporate has the highest average order value",
+          "sort": "desc",
+          "roles": {
+            "measures": [
+              "AOV"
+            ],
+            "detail": [
+              "Segment"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

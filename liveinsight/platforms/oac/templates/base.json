@@ -1,0 +1,729 @@
+{
+ "criteria": {
+  "columns": {
+   "children": [
+    {
+     "columnID": "CustomerSegment",
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Customer Segment\"",
+       "type": "sawx:sqlExpression"
+      }
+     }
+    },
+    {
+     "columnID": "OrderPriority",
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Order Priority\"",
+       "type": "sawx:sqlExpression"
+      }
+     }
+    },
+    {
+     "columnID": "Sales",
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Sales\"",
+       "type": "sawx:sqlExpression"
+      }
+     }
+    },
+    {
+     "columnID": "OrderQuarter",
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "ExtractQuarter(XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Order Date\")",
+       "type": "sawx:sqlExpression"
+      }
+     }
+    },
+    {
+     "columnID": "OrderYear",
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "ExtractYear(XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Order Date\")",
+       "type": "sawx:sqlExpression"
+      }
+     }
+    },
+    {
+     "columnID": "AvgOrderValue",
+     "userExpression": true,
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Sales\" / (COUNT(DISTINCT XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Order ID\"))",
+       "type": "sawx:sqlExpression"
+      }
+     },
+     "columnHeading": {
+      "caption": {
+       "text": "Valore medio ordine"
+      }
+     },
+     "columnDescription": {
+      "caption": {
+       "text": "Creato da Live Insight: vendite divise per il numero di ordini distinti."
+      }
+     }
+    }
+   ]
+  },
+  "criteriaConfig": {
+   "_version": "1.0.2",
+   "settings": {
+    "columnPropertyMap": {
+     "OrderQuarter": {
+      "parentExpression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Order Date\"",
+      "dateTimePreferences": {
+       "timeLevel": "quarter"
+      }
+     },
+     "OrderYear": {
+      "parentExpression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Order Date\"",
+      "dateTimePreferences": {
+       "timeLevel": "year"
+      }
+     }
+    }
+   }
+  },
+  "type": "saw:simpleCriteria",
+  "children": [],
+  "subjectArea": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#')"
+ },
+ "layouts": {
+  "children": [
+   {
+    "layoutProps": {
+     "customProps": {
+      "text": "{\"_version\":\"1.0.1\",\"oracle.bi.tech.layout.split\":{\"layoutMinSize\":{\"width\":\"100%\",\"height\":700},\"_version\":\"1.0.0\"}}"
+     }
+    },
+    "name": "layout1",
+    "type": "oracle.bi.tech.layout.split",
+    "children": [
+     {
+      "content": {
+       "viewName": "view!1",
+       "type": "view"
+      },
+      "left": "0",
+      "top": "0",
+      "displayFormat": {
+       "formatSpec": {
+        "width": "560px",
+        "height": "380px"
+       }
+      },
+      "zIndex": 1
+     },
+     {
+      "content": {
+       "viewName": "view!2",
+       "type": "view"
+      },
+      "left": "570",
+      "top": "0",
+      "displayFormat": {
+       "formatSpec": {
+        "width": "810px",
+        "height": "380px"
+       }
+      },
+      "zIndex": 2
+     },
+     {
+      "content": {
+       "viewName": "view!3",
+       "type": "view"
+      },
+      "left": "0",
+      "top": "390",
+      "displayFormat": {
+       "formatSpec": {
+        "width": "1380px",
+        "height": "300px"
+       }
+      },
+      "zIndex": 3
+     }
+    ]
+   }
+  ]
+ },
+ "views": {
+  "children": [
+   {
+    "type": "saw:canvas",
+    "viewName": "canvas!1",
+    "rootLayoutName": "layout1",
+    "viewCaption": {
+     "caption": {
+      "text": "Vendite"
+     }
+    },
+    "canvasConfig": {
+     "_version": "1.0.6",
+     "settings": {}
+    }
+   },
+   {
+    "type": "saw:pluginView",
+    "pluginType": "oracle.bi.tech.chart.bar",
+    "viewName": "view!1",
+    "viewConfig": {
+     "_version": "1.1.80",
+     "settings": {
+      "viz:common": {
+       "isAutoViewSuggestEnabled": "true"
+      },
+      "obitech-autoviz/autoviz": {
+       "innerPluginType": "oracle.bi.tech.chart.bar"
+      }
+     }
+    },
+    "dataModels": {
+     "children": [
+      {
+       "name": "dm1",
+       "edges": {
+        "children": [
+         {
+          "axis": "row",
+          "showColumnHeader": "rollover"
+         },
+         {
+          "axis": "column",
+          "showColumnHeader": "rollover",
+          "dependent": true
+         },
+         {
+          "axis": "page"
+         },
+         {
+          "axis": "section"
+         }
+        ]
+       },
+       "measuresList": {
+        "children": [
+         {
+          "columnID": "AvgOrderValue",
+          "type": "view",
+          "name": "MeasureView_0",
+          "aggRule": "none"
+         }
+        ]
+       },
+       "logicalDataModel": {
+        "_version": "1.0.0",
+        "settings": {
+         "logicalDataModel": {
+          "logicalEdges": {
+           "measures": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "AvgOrderValue",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "detail": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "CustomerSegment",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "color": {
+            "logicalEdgeLayers": [
+             {
+              "type": "measure",
+              "visibility": "hidden",
+              "userAdded": false,
+              "isUsed": true
+             }
+            ]
+           }
+          },
+          "_settingsVersion": "2.0.1"
+         },
+         "ldm_generation": 1
+        }
+       }
+      }
+     ]
+    },
+    "nestedViews": {
+     "children": [
+      {
+       "position": "embedded",
+       "view": {
+        "type": "saw:pluginView",
+        "pluginType": "oracle.bi.tech.chart.bar",
+        "viewName": "MeasureView_0",
+        "dataModels": {
+         "children": [
+          {
+           "name": "dm1",
+           "edges": {
+            "children": [
+             {
+              "axis": "row",
+              "showColumnHeader": "rollover",
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "column",
+                 "columnID": "CustomerSegment"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "column",
+              "showColumnHeader": "rollover",
+              "dependent": true,
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "measure",
+                 "visibility": "hidden"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "page"
+             },
+             {
+              "axis": "section"
+             }
+            ]
+           },
+           "measuresList": {
+            "children": [
+             {
+              "columnID": "AvgOrderValue",
+              "type": "column",
+              "isUsed": true,
+              "propertyAdditions": {
+               "children": [
+                {
+                 "id": "min.AvgOrderValue",
+                 "valueColumnID": "AvgOrderValue",
+                 "aggRule": "min",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                },
+                {
+                 "id": "max.AvgOrderValue",
+                 "valueColumnID": "AvgOrderValue",
+                 "aggRule": "max",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                }
+               ]
+              }
+             }
+            ]
+           }
+          }
+         ]
+        },
+        "physicalDataModelVersion": "2.5"
+       }
+      }
+     ]
+    },
+    "physicalDataModelVersion": "2.5",
+    "viewCaption": {
+     "caption": {
+      "text": "Valore medio ordine per segmento"
+     }
+    }
+   },
+   {
+    "type": "saw:pluginView",
+    "pluginType": "oracle.bi.tech.chart.line",
+    "viewName": "view!2",
+    "viewConfig": {
+     "_version": "1.1.80",
+     "settings": {
+      "viz:common": {
+       "isAutoViewSuggestEnabled": "true"
+      },
+      "obitech-autoviz/autoviz": {
+       "innerPluginType": "oracle.bi.tech.chart.line"
+      }
+     }
+    },
+    "dataModels": {
+     "children": [
+      {
+       "name": "dm1",
+       "edges": {
+        "children": [
+         {
+          "axis": "row",
+          "showColumnHeader": "rollover"
+         },
+         {
+          "axis": "column",
+          "showColumnHeader": "rollover",
+          "dependent": true
+         },
+         {
+          "axis": "page"
+         },
+         {
+          "axis": "section"
+         }
+        ]
+       },
+       "measuresList": {
+        "children": [
+         {
+          "columnID": "Sales",
+          "type": "view",
+          "name": "MeasureView_0",
+          "aggRule": "none"
+         }
+        ]
+       },
+       "logicalDataModel": {
+        "_version": "1.0.0",
+        "settings": {
+         "logicalDataModel": {
+          "logicalEdges": {
+           "detail": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "OrderQuarter",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "measures": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "color": {
+            "logicalEdgeLayers": [
+             {
+              "type": "measure",
+              "visibility": "hidden",
+              "userAdded": false,
+              "isUsed": true
+             }
+            ]
+           }
+          },
+          "_settingsVersion": "2.0.1"
+         },
+         "ldm_generation": 1
+        }
+       }
+      }
+     ]
+    },
+    "nestedViews": {
+     "children": [
+      {
+       "position": "embedded",
+       "view": {
+        "type": "saw:pluginView",
+        "pluginType": "oracle.bi.tech.chart.line",
+        "viewName": "MeasureView_0",
+        "dataModels": {
+         "children": [
+          {
+           "name": "dm1",
+           "edges": {
+            "children": [
+             {
+              "axis": "row",
+              "showColumnHeader": "rollover",
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "column",
+                 "columnID": "OrderQuarter"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "column",
+              "showColumnHeader": "rollover",
+              "dependent": true,
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "measure",
+                 "visibility": "hidden"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "page"
+             },
+             {
+              "axis": "section"
+             }
+            ]
+           },
+           "measuresList": {
+            "children": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "isUsed": true,
+              "propertyAdditions": {
+               "children": [
+                {
+                 "id": "min.Sales",
+                 "valueColumnID": "Sales",
+                 "aggRule": "min",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                },
+                {
+                 "id": "max.Sales",
+                 "valueColumnID": "Sales",
+                 "aggRule": "max",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                }
+               ]
+              }
+             }
+            ]
+           }
+          }
+         ]
+        },
+        "physicalDataModelVersion": "2.5"
+       }
+      }
+     ]
+    },
+    "physicalDataModelVersion": "2.5",
+    "viewCaption": {
+     "caption": {
+      "text": "Vendite per trimestre"
+     }
+    }
+   },
+   {
+    "type": "saw:pluginView",
+    "pluginType": "oracle.bi.tech.pivot",
+    "viewName": "view!3",
+    "viewConfig": {
+     "_version": "1.1.80",
+     "settings": {
+      "obitech-autoviz/autoviz": {
+       "innerPluginType": "oracle.bi.tech.chart.line"
+      },
+      "oracle.bi.tech.pivot": {
+       "_version": "1.0.1",
+       "settings": {}
+      }
+     }
+    },
+    "dataModels": {
+     "children": [
+      {
+       "name": "dm1",
+       "logicalDataModel": {
+        "_version": "1.0.0",
+        "settings": {
+         "logicalDataModel": {
+          "logicalEdges": {
+           "row": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "OrderPriority",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "measures": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "col": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "OrderYear",
+              "type": "column",
+              "isUsed": true
+             },
+             {
+              "type": "measure",
+              "visibility": "visible",
+              "userAdded": false,
+              "isUsed": true
+             }
+            ]
+           }
+          },
+          "_settingsVersion": "2.0.1"
+         },
+         "ldm_generation": 1
+        }
+       },
+       "edges": {
+        "children": [
+         {
+          "axis": "row",
+          "showColumnHeader": "rollover",
+          "edgeLayers": {
+           "children": [
+            {
+             "type": "column",
+             "columnID": "OrderPriority"
+            }
+           ]
+          }
+         },
+         {
+          "axis": "column",
+          "showColumnHeader": "rollover",
+          "dependent": true,
+          "edgeLayers": {
+           "children": [
+            {
+             "type": "column",
+             "columnID": "OrderYear"
+            },
+            {
+             "type": "measure"
+            }
+           ]
+          }
+         },
+         {
+          "axis": "page"
+         },
+         {
+          "axis": "section"
+         }
+        ]
+       },
+       "measuresList": {
+        "children": [
+         {
+          "columnID": "Sales",
+          "type": "column",
+          "isUsed": true
+         }
+        ]
+       }
+      }
+     ]
+    },
+    "physicalDataModelVersion": "2.5",
+    "viewCaption": {
+     "caption": {
+      "text": "Vendite per priorità e anno"
+     }
+    }
+   }
+  ],
+  "currentView": 0
+ },
+ "parameters": {
+  "_version": "1.0.5"
+ },
+ "datasources": {
+  "children": [
+   {
+    "subjectArea": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#')"
+   }
+  ]
+ },
+ "reportConfig": {
+  "_version": "1.0.9",
+  "settings": {
+   "oracle.bi.tech.shapeSchemeService": {
+    "_version": "1.0.0",
+    "settings": {
+     "version": "1.0.3",
+     "generation": 0,
+     "domains": {
+      "[\"obitech.category.value\",\"categoricalSchemes\",\"[]\"]": {
+       "generation": 0,
+       "valueMap": {},
+       "type": "categoricalSchemes",
+       "scheme": null,
+       "nextIndex": 0
+      }
+     }
+    }
+   },
+   "oracle.bi.tech.colorSchemeService": {
+    "_version": "1.0.0",
+    "settings": {
+     "version": "1.0.3",
+     "generation": 0,
+     "colorDomains": {
+      "[\"obitech.colorcategory.value\",\"categoricalSchemes\",\"[]\"]": {
+       "generation": 0,
+       "colorMap": {},
+       "coloringType": "categoricalSchemes",
+       "colorScheme": null,
+       "noRepeat": true,
+       "hierarchical": false,
+       "nextIndex": 0
+      }
+     }
+    }
+   },
+   "projectSettings": {
+    "_version": "1.0.0",
+    "settings": {
+     "autoSaveEnabled": false
+    }
+   }
+  }
+ },
+ "projectVersion": 1162
+}

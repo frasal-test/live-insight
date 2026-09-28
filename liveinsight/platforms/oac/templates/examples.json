@@ -1,0 +1,1257 @@
+{
+ "criteria": {
+  "columns": {
+   "children": [
+    {
+     "columnID": "Sales",
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Sales\"",
+       "type": "sawx:sqlExpression"
+      }
+     }
+    },
+    {
+     "columnID": "ProductCategory",
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Product Category\"",
+       "type": "sawx:sqlExpression"
+      }
+     }
+    },
+    {
+     "columnID": "ProductSubCategory",
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Product Sub Category\"",
+       "type": "sawx:sqlExpression"
+      }
+     }
+    },
+    {
+     "columnID": "OrderDate",
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "ExtractMonth(XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Order Date\")",
+       "type": "sawx:sqlExpression"
+      }
+     }
+    },
+    {
+     "columnID": "Profit",
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Profit\"",
+       "type": "sawx:sqlExpression"
+      }
+     }
+    },
+    {
+     "columnID": "OrderDate_1",
+     "type": "saw:regularColumn",
+     "columnFormula": {
+      "expr": {
+       "children": [],
+       "expression": "ExtractYear(XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Order Date\")",
+       "type": "sawx:sqlExpression"
+      }
+     }
+    }
+   ]
+  },
+  "criteriaConfig": {
+   "_version": "1.0.2",
+   "settings": {
+    "columnPropertyMap": {
+     "OrderDate": {
+      "parentExpression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Order Date\"",
+      "dateTimePreferences": {
+       "timeLevel": "month"
+      }
+     },
+     "OrderDate_1": {
+      "parentExpression": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#').\"Retail Data final\".\"Order Date\"",
+      "dateTimePreferences": {
+       "timeLevel": "year"
+      }
+     }
+    }
+   }
+  },
+  "type": "saw:simpleCriteria",
+  "children": [],
+  "subjectArea": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#')"
+ },
+ "layouts": {
+  "children": [
+   {
+    "layoutProps": {
+     "customProps": {
+      "text": "{\"_version\":\"1.0.1\",\"oracle.bi.tech.layout.split\":{\"layoutMinSize\":{\"width\":\"100%\",\"height\":630},\"_version\":\"1.0.0\"}}"
+     }
+    },
+    "name": "layout1",
+    "type": "oracle.bi.tech.layout.split",
+    "children": [
+     {
+      "content": {
+       "viewName": "view!1",
+       "type": "view"
+      },
+      "left": "927",
+      "top": "0",
+      "displayFormat": {
+       "formatSpec": {
+        "width": "453px",
+        "height": "407px"
+       }
+      },
+      "zIndex": 1
+     },
+     {
+      "content": {
+       "viewName": "view!2",
+       "type": "view"
+      },
+      "left": "463",
+      "top": "0",
+      "displayFormat": {
+       "formatSpec": {
+        "width": "454px",
+        "height": "407px"
+       }
+      },
+      "zIndex": 2
+     },
+     {
+      "content": {
+       "viewName": "view!3",
+       "type": "view"
+      },
+      "left": "0",
+      "top": "0",
+      "displayFormat": {
+       "formatSpec": {
+        "width": "453px",
+        "height": "407px"
+       }
+      },
+      "zIndex": 3
+     },
+     {
+      "content": {
+       "viewName": "view!4",
+       "type": "view"
+      },
+      "left": "927",
+      "top": "417",
+      "displayFormat": {
+       "formatSpec": {
+        "width": "453px",
+        "height": "407px"
+       }
+      },
+      "zIndex": 4
+     },
+     {
+      "content": {
+       "viewName": "view!5",
+       "type": "view"
+      },
+      "left": "463",
+      "top": "417",
+      "displayFormat": {
+       "formatSpec": {
+        "width": "454px",
+        "height": "407px"
+       }
+      },
+      "zIndex": 5
+     },
+     {
+      "content": {
+       "viewName": "view!6",
+       "type": "view"
+      },
+      "left": "0",
+      "top": "417",
+      "displayFormat": {
+       "formatSpec": {
+        "width": "453px",
+        "height": "407px"
+       }
+      },
+      "zIndex": 6
+     }
+    ]
+   }
+  ]
+ },
+ "views": {
+  "children": [
+   {
+    "type": "saw:canvas",
+    "viewName": "canvas!1",
+    "rootLayoutName": "layout1",
+    "canvasConfig": {
+     "_version": "1.0.6",
+     "settings": {}
+    }
+   },
+   {
+    "type": "saw:pluginView",
+    "pluginType": "oracle.bi.tech.chart.bar",
+    "viewName": "view!1",
+    "viewConfig": {
+     "_version": "1.1.80",
+     "settings": {
+      "viz:common": {
+       "isAutoViewSuggestEnabled": "true"
+      },
+      "obitech-autoviz/autoviz": {
+       "innerPluginType": "oracle.bi.tech.chart.bar"
+      }
+     }
+    },
+    "dataModels": {
+     "children": [
+      {
+       "name": "dm1",
+       "edges": {
+        "children": [
+         {
+          "axis": "row",
+          "showColumnHeader": "rollover"
+         },
+         {
+          "axis": "column",
+          "showColumnHeader": "rollover",
+          "dependent": true
+         },
+         {
+          "axis": "page"
+         },
+         {
+          "axis": "section"
+         }
+        ]
+       },
+       "measuresList": {
+        "children": [
+         {
+          "columnID": "Sales",
+          "type": "view",
+          "name": "MeasureView_0",
+          "aggRule": "none"
+         }
+        ]
+       },
+       "logicalDataModel": {
+        "_version": "1.0.0",
+        "settings": {
+         "logicalDataModel": {
+          "logicalEdges": {
+           "measures": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "detail": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "ProductCategory",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "color": {
+            "logicalEdgeLayers": [
+             {
+              "type": "measure",
+              "visibility": "hidden",
+              "userAdded": false,
+              "isUsed": true
+             }
+            ]
+           }
+          },
+          "_settingsVersion": "2.0.1"
+         },
+         "ldm_generation": 1
+        }
+       }
+      }
+     ]
+    },
+    "nestedViews": {
+     "children": [
+      {
+       "position": "embedded",
+       "view": {
+        "type": "saw:pluginView",
+        "pluginType": "oracle.bi.tech.chart.bar",
+        "viewName": "MeasureView_0",
+        "dataModels": {
+         "children": [
+          {
+           "name": "dm1",
+           "edges": {
+            "children": [
+             {
+              "axis": "row",
+              "showColumnHeader": "rollover",
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "column",
+                 "columnID": "ProductCategory"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "column",
+              "showColumnHeader": "rollover",
+              "dependent": true,
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "measure",
+                 "visibility": "hidden"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "page"
+             },
+             {
+              "axis": "section"
+             }
+            ]
+           },
+           "measuresList": {
+            "children": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "isUsed": true,
+              "propertyAdditions": {
+               "children": [
+                {
+                 "id": "min.Sales",
+                 "valueColumnID": "Sales",
+                 "aggRule": "min",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                },
+                {
+                 "id": "max.Sales",
+                 "valueColumnID": "Sales",
+                 "aggRule": "max",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                }
+               ]
+              }
+             }
+            ]
+           }
+          }
+         ]
+        },
+        "physicalDataModelVersion": "2.5"
+       }
+      }
+     ]
+    },
+    "physicalDataModelVersion": "2.5"
+   },
+   {
+    "type": "saw:pluginView",
+    "pluginType": "oracle.bi.tech.chart.horizontalbar",
+    "viewName": "view!2",
+    "viewConfig": {
+     "_version": "1.1.80",
+     "settings": {
+      "obitech-autoviz/autoviz": {
+       "innerPluginType": "oracle.bi.tech.chart.horizontalbar"
+      }
+     }
+    },
+    "dataModels": {
+     "children": [
+      {
+       "name": "dm1",
+       "edges": {
+        "children": [
+         {
+          "axis": "row",
+          "showColumnHeader": "rollover"
+         },
+         {
+          "axis": "column",
+          "showColumnHeader": "rollover",
+          "dependent": true
+         },
+         {
+          "axis": "page"
+         },
+         {
+          "axis": "section"
+         }
+        ]
+       },
+       "measuresList": {
+        "children": [
+         {
+          "columnID": "Sales",
+          "type": "view",
+          "name": "MeasureView_0",
+          "aggRule": "none"
+         }
+        ]
+       },
+       "logicalDataModel": {
+        "_version": "1.0.0",
+        "settings": {
+         "logicalDataModel": {
+          "logicalEdges": {
+           "measures": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "detail": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "ProductSubCategory",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "color": {
+            "logicalEdgeLayers": [
+             {
+              "type": "measure",
+              "visibility": "hidden",
+              "userAdded": false,
+              "isUsed": true
+             }
+            ]
+           }
+          },
+          "_settingsVersion": "2.0.1"
+         },
+         "ldm_generation": 1
+        }
+       }
+      }
+     ]
+    },
+    "physicalDataModelVersion": "2.5",
+    "nestedViews": {
+     "children": [
+      {
+       "position": "embedded",
+       "view": {
+        "type": "saw:pluginView",
+        "pluginType": "oracle.bi.tech.chart.horizontalbar",
+        "viewName": "MeasureView_0",
+        "dataModels": {
+         "children": [
+          {
+           "name": "dm1",
+           "edges": {
+            "children": [
+             {
+              "axis": "row",
+              "showColumnHeader": "rollover",
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "column",
+                 "columnID": "ProductSubCategory"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "column",
+              "showColumnHeader": "rollover",
+              "dependent": true,
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "measure",
+                 "visibility": "hidden"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "page"
+             },
+             {
+              "axis": "section"
+             }
+            ]
+           },
+           "measuresList": {
+            "children": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "isUsed": true,
+              "propertyAdditions": {
+               "children": [
+                {
+                 "id": "min.Sales",
+                 "valueColumnID": "Sales",
+                 "aggRule": "min",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                },
+                {
+                 "id": "max.Sales",
+                 "valueColumnID": "Sales",
+                 "aggRule": "max",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                }
+               ]
+              }
+             }
+            ]
+           }
+          }
+         ]
+        },
+        "physicalDataModelVersion": "2.5"
+       }
+      }
+     ]
+    }
+   },
+   {
+    "type": "saw:pluginView",
+    "pluginType": "oracle.bi.tech.chart.line",
+    "viewName": "view!3",
+    "viewConfig": {
+     "_version": "1.1.80",
+     "settings": {
+      "viz:common": {
+       "isAutoViewSuggestEnabled": "true"
+      },
+      "obitech-autoviz/autoviz": {
+       "innerPluginType": "oracle.bi.tech.chart.line"
+      }
+     }
+    },
+    "dataModels": {
+     "children": [
+      {
+       "name": "dm1",
+       "edges": {
+        "children": [
+         {
+          "axis": "row",
+          "showColumnHeader": "rollover"
+         },
+         {
+          "axis": "column",
+          "showColumnHeader": "rollover",
+          "dependent": true
+         },
+         {
+          "axis": "page"
+         },
+         {
+          "axis": "section"
+         }
+        ]
+       },
+       "measuresList": {
+        "children": [
+         {
+          "columnID": "Sales",
+          "type": "view",
+          "name": "MeasureView_0",
+          "aggRule": "none"
+         }
+        ]
+       },
+       "logicalDataModel": {
+        "_version": "1.0.0",
+        "settings": {
+         "logicalDataModel": {
+          "logicalEdges": {
+           "detail": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "OrderDate",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "measures": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "color": {
+            "logicalEdgeLayers": [
+             {
+              "type": "measure",
+              "visibility": "hidden",
+              "userAdded": false,
+              "isUsed": true
+             }
+            ]
+           }
+          },
+          "_settingsVersion": "2.0.1"
+         },
+         "ldm_generation": 1
+        }
+       }
+      }
+     ]
+    },
+    "nestedViews": {
+     "children": [
+      {
+       "position": "embedded",
+       "view": {
+        "type": "saw:pluginView",
+        "pluginType": "oracle.bi.tech.chart.line",
+        "viewName": "MeasureView_0",
+        "dataModels": {
+         "children": [
+          {
+           "name": "dm1",
+           "edges": {
+            "children": [
+             {
+              "axis": "row",
+              "showColumnHeader": "rollover",
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "column",
+                 "columnID": "OrderDate"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "column",
+              "showColumnHeader": "rollover",
+              "dependent": true,
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "measure",
+                 "visibility": "hidden"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "page"
+             },
+             {
+              "axis": "section"
+             }
+            ]
+           },
+           "measuresList": {
+            "children": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "isUsed": true,
+              "propertyAdditions": {
+               "children": [
+                {
+                 "id": "min.Sales",
+                 "valueColumnID": "Sales",
+                 "aggRule": "min",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                },
+                {
+                 "id": "max.Sales",
+                 "valueColumnID": "Sales",
+                 "aggRule": "max",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                }
+               ]
+              }
+             }
+            ]
+           }
+          }
+         ]
+        },
+        "physicalDataModelVersion": "2.5"
+       }
+      }
+     ]
+    },
+    "physicalDataModelVersion": "2.5"
+   },
+   {
+    "type": "saw:pluginView",
+    "pluginType": "oracle.bi.tech.table",
+    "viewName": "view!4",
+    "viewConfig": {
+     "_version": "1.1.80",
+     "settings": {
+      "obitech-autoviz/autoviz": {
+       "innerPluginType": "oracle.bi.tech.chart.scatter"
+      },
+      "oracle.bi.tech.pivot": {
+       "_version": "1.0.1",
+       "settings": {}
+      },
+      "oracle.bi.tech.table": {
+       "_version": "1.0.1",
+       "settings": {}
+      }
+     }
+    },
+    "dataModels": {
+     "children": [
+      {
+       "name": "dm1",
+       "edges": {
+        "children": [
+         {
+          "axis": "row",
+          "showColumnHeader": "true",
+          "edgeLayers": {
+           "children": [
+            {
+             "type": "column",
+             "columnID": "ProductCategory"
+            },
+            {
+             "type": "column",
+             "columnID": "Sales"
+            },
+            {
+             "type": "column",
+             "columnID": "Profit"
+            }
+           ]
+          }
+         },
+         {
+          "axis": "column",
+          "showColumnHeader": "rollover",
+          "dependent": true
+         },
+         {
+          "axis": "page"
+         },
+         {
+          "axis": "section"
+         }
+        ]
+       },
+       "logicalDataModel": {
+        "_version": "1.0.0",
+        "settings": {
+         "logicalDataModel": {
+          "logicalEdges": {
+           "measures": {
+            "logicalEdgeLayers": []
+           },
+           "row": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "ProductCategory",
+              "type": "column",
+              "isUsed": true
+             },
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "isUsed": true
+             },
+             {
+              "columnID": "Profit",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "col": {
+            "logicalEdgeLayers": []
+           }
+          },
+          "_settingsVersion": "2.0.1"
+         },
+         "ldm_generation": 1
+        }
+       }
+      }
+     ]
+    },
+    "physicalDataModelVersion": "2.5"
+   },
+   {
+    "type": "saw:pluginView",
+    "pluginType": "oracle.bi.tech.pivot",
+    "viewName": "view!5",
+    "viewConfig": {
+     "_version": "1.1.80",
+     "settings": {
+      "obitech-autoviz/autoviz": {
+       "innerPluginType": "oracle.bi.tech.chart.line"
+      },
+      "oracle.bi.tech.pivot": {
+       "_version": "1.0.1",
+       "settings": {}
+      }
+     }
+    },
+    "dataModels": {
+     "children": [
+      {
+       "name": "dm1",
+       "logicalDataModel": {
+        "_version": "1.0.0",
+        "settings": {
+         "logicalDataModel": {
+          "logicalEdges": {
+           "row": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "ProductCategory",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "measures": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           },
+           "col": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "OrderDate_1",
+              "type": "column",
+              "isUsed": true
+             },
+             {
+              "type": "measure",
+              "visibility": "visible",
+              "userAdded": false,
+              "isUsed": true
+             }
+            ]
+           }
+          },
+          "_settingsVersion": "2.0.1"
+         },
+         "ldm_generation": 1
+        }
+       },
+       "edges": {
+        "children": [
+         {
+          "axis": "row",
+          "showColumnHeader": "rollover",
+          "edgeLayers": {
+           "children": [
+            {
+             "type": "column",
+             "columnID": "ProductCategory"
+            }
+           ]
+          }
+         },
+         {
+          "axis": "column",
+          "showColumnHeader": "rollover",
+          "dependent": true,
+          "edgeLayers": {
+           "children": [
+            {
+             "type": "column",
+             "columnID": "OrderDate_1"
+            },
+            {
+             "type": "measure"
+            }
+           ]
+          }
+         },
+         {
+          "axis": "page"
+         },
+         {
+          "axis": "section"
+         }
+        ]
+       },
+       "measuresList": {
+        "children": [
+         {
+          "columnID": "Sales",
+          "type": "column",
+          "isUsed": true
+         }
+        ]
+       }
+      }
+     ]
+    },
+    "physicalDataModelVersion": "2.5"
+   },
+   {
+    "type": "saw:pluginView",
+    "pluginType": "oracle.bi.tech.chart.scatter",
+    "viewName": "view!6",
+    "viewConfig": {
+     "_version": "1.1.80",
+     "settings": {
+      "obitech-autoviz/autoviz": {
+       "innerPluginType": "oracle.bi.tech.chart.scatter"
+      }
+     }
+    },
+    "dataModels": {
+     "children": [
+      {
+       "name": "dm1",
+       "edges": {
+        "children": [
+         {
+          "axis": "row",
+          "showColumnHeader": "rollover"
+         },
+         {
+          "axis": "column",
+          "showColumnHeader": "rollover",
+          "dependent": true
+         },
+         {
+          "axis": "page"
+         },
+         {
+          "axis": "section"
+         }
+        ]
+       },
+       "measuresList": {
+        "children": [
+         {
+          "columnID": "Sales",
+          "type": "view",
+          "name": "MeasureView_0",
+          "aggRule": "none"
+         }
+        ]
+       },
+       "logicalDataModel": {
+        "_version": "1.0.0",
+        "settings": {
+         "logicalDataModel": {
+          "logicalEdges": {
+           "measures": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "tags": [
+               "obitech-scatterchart#x"
+              ],
+              "isUsed": true
+             },
+             {
+              "columnID": "Profit",
+              "type": "column",
+              "tags": [
+               "obitech-scatterchart#y"
+              ],
+              "isUsed": true
+             }
+            ]
+           },
+           "detail": {
+            "logicalEdgeLayers": [
+             {
+              "columnID": "ProductSubCategory",
+              "type": "column",
+              "isUsed": true
+             }
+            ]
+           }
+          },
+          "_settingsVersion": "2.0.1"
+         },
+         "ldm_generation": 1
+        }
+       }
+      }
+     ]
+    },
+    "physicalDataModelVersion": "2.5",
+    "nestedViews": {
+     "children": [
+      {
+       "position": "embedded",
+       "view": {
+        "type": "saw:pluginView",
+        "pluginType": "oracle.bi.tech.chart.scatter",
+        "viewName": "MeasureView_0",
+        "dataModels": {
+         "children": [
+          {
+           "name": "dm1",
+           "edges": {
+            "children": [
+             {
+              "axis": "row",
+              "showColumnHeader": "rollover",
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "column",
+                 "columnID": "ProductSubCategory"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "column",
+              "showColumnHeader": "rollover",
+              "dependent": true,
+              "edgeLayers": {
+               "children": [
+                {
+                 "type": "measure",
+                 "visibility": "hidden"
+                }
+               ]
+              }
+             },
+             {
+              "axis": "page"
+             },
+             {
+              "axis": "section"
+             }
+            ]
+           },
+           "measuresList": {
+            "children": [
+             {
+              "columnID": "Sales",
+              "type": "column",
+              "tags": [
+               "obitech-scatterchart#x"
+              ],
+              "isUsed": true,
+              "propertyAdditions": {
+               "children": [
+                {
+                 "id": "min.Sales",
+                 "valueColumnID": "Sales",
+                 "aggRule": "min",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                },
+                {
+                 "id": "max.Sales",
+                 "valueColumnID": "Sales",
+                 "aggRule": "max",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                },
+                {
+                 "id": "min.Profit",
+                 "valueColumnID": "Profit",
+                 "aggRule": "min",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                },
+                {
+                 "id": "max.Profit",
+                 "valueColumnID": "Profit",
+                 "aggRule": "max",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                },
+                {
+                 "id": "median.Sales",
+                 "valueColumnID": "Sales",
+                 "aggRule": "median",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                },
+                {
+                 "id": "median.Profit",
+                 "valueColumnID": "Profit",
+                 "aggRule": "median",
+                 "stacked": false,
+                 "placement": "first_cell",
+                 "grainEdge": "none",
+                 "acrossMeasures": "single"
+                }
+               ]
+              }
+             },
+             {
+              "columnID": "Profit",
+              "type": "column",
+              "tags": [
+               "obitech-scatterchart#y"
+              ],
+              "isUsed": true
+             }
+            ]
+           }
+          }
+         ]
+        },
+        "physicalDataModelVersion": "2.5"
+       }
+      }
+     ]
+    }
+   }
+  ],
+  "currentView": 0
+ },
+ "parameters": {
+  "_version": "1.0.5"
+ },
+ "datasources": {
+  "children": [
+   {
+    "subjectArea": "XSA('00000000-0000-0000-0000-000000000000'.'Retail Orders#-#template#-#')"
+   }
+  ]
+ },
+ "reportConfig": {
+  "_version": "1.0.9",
+  "settings": {
+   "oracle.bi.tech.shapeSchemeService": {
+    "_version": "1.0.0",
+    "settings": {
+     "version": "1.0.3",
+     "generation": 0,
+     "domains": {
+      "[\"obitech.category.value\",\"categoricalSchemes\",\"[]\"]": {
+       "generation": 0,
+       "valueMap": {},
+       "type": "categoricalSchemes",
+       "scheme": null,
+       "nextIndex": 0
+      }
+     }
+    }
+   },
+   "oracle.bi.tech.colorSchemeService": {
+    "_version": "1.0.0",
+    "settings": {
+     "version": "1.0.3",
+     "generation": 0,
+     "colorDomains": {
+      "[\"obitech.colorcategory.value\",\"categoricalSchemes\",\"[]\"]": {
+       "generation": 0,
+       "colorMap": {
+        "Sales": 0,
+        "[\"Profit\",\"Sales\"]": 1
+       },
+       "coloringType": "categoricalSchemes",
+       "colorScheme": null,
+       "noRepeat": true,
+       "hierarchical": false,
+       "nextIndex": 2
+      },
+      "[\"obitech.colorcategory.value\",\"categoricalSchemes\",\"ProductCategory\"]": {
+       "generation": 0,
+       "colorMap": {
+        "Furniture": 0,
+        "Office Supplies": 1,
+        "Technology": 2
+       },
+       "coloringType": "categoricalSchemes",
+       "colorScheme": null,
+       "noRepeat": true,
+       "hierarchical": false,
+       "nextIndex": 3
+      }
+     }
+    }
+   },
+   "projectSettings": {
+    "_version": "1.0.0",
+    "settings": {
+     "autoSaveEnabled": false
+    }
+   }
+  }
+ },
+ "projectVersion": 1162
+}

@@ -1,0 +1,356 @@
+{
+  "$defs": {
+    "Calculation": {
+      "properties": {
+        "kind": {
+          "const": "calc",
+          "default": "calc",
+          "title": "Kind",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,62}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "caption": {
+          "description": "name shown in the workbook",
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Caption",
+          "type": "string"
+        },
+        "expression": {
+          "description": "Logical SQL, dataset columns as {Column name}",
+          "minLength": 1,
+          "title": "Expression",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "is_measure": {
+          "default": true,
+          "title": "Is Measure",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "caption",
+        "expression"
+      ],
+      "title": "Calculation",
+      "type": "object"
+    },
+    "CanvasSpec": {
+      "properties": {
+        "title": {
+          "maxLength": 60,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "visuals": {
+          "items": {
+            "$ref": "#/$defs/VisualSpec"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "title": "Visuals",
+          "type": "array"
+        }
+      },
+      "required": [
+        "title",
+        "visuals"
+      ],
+      "title": "CanvasSpec",
+      "type": "object"
+    },
+    "DatasetRef": {
+      "description": "The dataset the workbook reads, on the platform that serves it (see docs/ARCHITETTURA.md, §1).",
+      "properties": {
+        "platform": {
+          "const": "oac",
+          "description": "the platform that serves the dataset",
+          "title": "Platform",
+          "type": "string"
+        },
+        "id": {
+          "description": "the dataset identifier on that platform (OAC: its xsaExpr)",
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "description": "the dataset name, for people: never used to find it",
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "platform",
+        "id",
+        "name"
+      ],
+      "title": "DatasetRef",
+      "type": "object"
+    },
+    "DateColumn": {
+      "properties": {
+        "kind": {
+          "const": "date",
+          "default": "date",
+          "title": "Kind",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,62}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "source": {
+          "description": "date column of the dataset",
+          "title": "Source",
+          "type": "string"
+        },
+        "grain": {
+          "enum": [
+            "year",
+            "quarter",
+            "month",
+            "day"
+          ],
+          "title": "Grain",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "grain"
+      ],
+      "title": "DateColumn",
+      "type": "object"
+    },
+    "FilterSpec": {
+      "description": "A filter of the visual's filter bar (workbook \"With Filters\"): the platform applies it, and so does the preview.",
+      "properties": {
+        "column": {
+          "description": "id of a column defined in columns (even if the visual does not show it)",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,62}$",
+          "title": "Column",
+          "type": "string"
+        },
+        "op": {
+          "description": "in: values of an attribute, or periods of a date column ('2016', '2016 Q1', '2016-11', '2016-11-05'); between: [minimum, maximum] of a measure, computed over the visual's attributes, or [from, to] of a date column with grain day ('2015-09-01', '2015-11-30')",
+          "enum": [
+            "in",
+            "between"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ]
+          },
+          "maxItems": 50,
+          "minItems": 1,
+          "title": "Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "column",
+        "op",
+        "values"
+      ],
+      "title": "FilterSpec",
+      "type": "object"
+    },
+    "SourceColumn": {
+      "properties": {
+        "kind": {
+          "const": "column",
+          "default": "column",
+          "title": "Kind",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_]{0,62}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "source": {
+          "description": "column name in the dataset, as in describe_data",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "source"
+      ],
+      "title": "SourceColumn",
+      "type": "object"
+    },
+    "VisualSpec": {
+      "properties": {
+        "kind": {
+          "enum": [
+            "bar",
+            "hbar",
+            "line",
+            "table",
+            "pivot",
+            "scatter",
+            "area",
+            "radar",
+            "boxplot",
+            "map",
+            "narrative",
+            "tile"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "title": {
+          "description": "says what the data show, not the chart type",
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "roles": {
+          "additionalProperties": {
+            "items": {
+              "pattern": "^[A-Za-z][A-Za-z0-9_]{0,62}$",
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Roles",
+          "type": "object"
+        },
+        "sort": {
+          "anyOf": [
+            {
+              "enum": [
+                "desc",
+                "asc"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "bar/hbar: categories ordered by value",
+          "title": "Sort"
+        },
+        "filters": {
+          "items": {
+            "$ref": "#/$defs/FilterSpec"
+          },
+          "maxItems": 4,
+          "title": "Filters",
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "title",
+        "roles"
+      ],
+      "title": "VisualSpec",
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/frasal-test/live-insight/blob/main/docs/workbook-spec.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "The contract between the engine and the platform adapters: one JSON with everything needed to build the\nworkbook, visuals nested inside. The engine writes it, a WorkbookTarget (OAC today) reads only this.\nPublished as docs/workbook-spec.schema.json (`uv run python -m liveinsight.engine.spec` rewrites it).",
+  "properties": {
+    "version": {
+      "const": 1,
+      "default": 1,
+      "description": "version of this contract: bump it on changes that old readers cannot understand",
+      "title": "Version",
+      "type": "integer"
+    },
+    "dataset": {
+      "$ref": "#/$defs/DatasetRef"
+    },
+    "name": {
+      "description": "workbook name",
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "columns": {
+      "description": "every column the visuals and filters use",
+      "items": {
+        "discriminator": {
+          "mapping": {
+            "calc": "#/$defs/Calculation",
+            "column": "#/$defs/SourceColumn",
+            "date": "#/$defs/DateColumn"
+          },
+          "propertyName": "kind"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/$defs/SourceColumn"
+          },
+          {
+            "$ref": "#/$defs/DateColumn"
+          },
+          {
+            "$ref": "#/$defs/Calculation"
+          }
+        ]
+      },
+      "minItems": 1,
+      "title": "Columns",
+      "type": "array"
+    },
+    "canvases": {
+      "description": "the workbook pages",
+      "items": {
+        "$ref": "#/$defs/CanvasSpec"
+      },
+      "maxItems": 10,
+      "minItems": 1,
+      "title": "Canvases",
+      "type": "array"
+    }
+  },
+  "required": [
+    "dataset",
+    "name",
+    "columns",
+    "canvases"
+  ],
+  "title": "Live Insight WorkbookSpec",
+  "type": "object"
+}

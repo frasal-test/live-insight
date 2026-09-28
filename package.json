@@ -1,0 +1,11 @@
+{
+  "name": "live-insight-mvp",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently --kill-others --names api,web --prefix-colors blue,green \"uv run uvicorn liveinsight.api:app --reload --reload-dir liveinsight --port 8000\" \"npm --prefix web run dev\"",
+    "build": "npm --prefix web run build"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
