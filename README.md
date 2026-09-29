@@ -14,7 +14,7 @@ deterministic code. You bring the LLM: OpenAI, Anthropic, OCI Generative AI, or 
 > dataset added to the prompt — did not pass the go/no-go threshold we set before measuring (+1.4 and +4.3 points
 > against +15 required), so the project stops here. What remains is a working, tested reference for building an
 > external assistant on OAC: the MCP integration, the sign-in flow, a generator of real OAC workbooks, and the
-> lessons below. Issues and pull requests are not monitored.
+> lessons below. Contributions are welcome, reviewed on a best-effort basis (see [Contributing](#contributing)).
 
 ## Screenshots
 
@@ -165,6 +165,17 @@ liveinsight/platforms/oac/       OAC adapter: MCP client, Logical SQL, catalog, 
   Preview: both can change.
 - Tested on one sample dataset (Retail Orders) on one instance. Test names and comments in `tests/` are partly in
   Italian; the questions in the tests are Italian on purpose.
+
+## Contributing
+
+Pull requests and issues are welcome, but this is a closed side project maintained on a best-effort basis: replies
+may take a while. Before opening a pull request:
+
+- Run `uv run pytest` (no network, no tokens needed) and keep it green.
+- Keep code, comments, tests and docs in English; every UI string goes in the JSON translation files.
+- Never commit `.dva` files, secrets, OCIDs or your OAC instance host.
+
+Forks are of course fine under the Apache-2.0 licence.
 
 ## Credits and licence
 
