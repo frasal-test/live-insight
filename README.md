@@ -16,6 +16,12 @@ deterministic code. You bring the LLM: OpenAI, Anthropic, OCI Generative AI, or 
 > external assistant on OAC: the MCP integration, the sign-in flow, a generator of real OAC workbooks, and the
 > lessons below. Issues and pull requests are not monitored.
 
+## Screenshots
+
+![Chat with a map visual and the workbook panel](docs/img/chat.png)
+
+![Settings: OAC instance, model provider and model](docs/img/settings.png)
+
 ## What it does
 
 1. **Sign in** with your OAC user (the same OAuth flow as Oracle's `oac-mcp-connect` connector): queries run with
