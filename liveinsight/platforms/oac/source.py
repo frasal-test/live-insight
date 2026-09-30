@@ -20,7 +20,7 @@ QUERY_MAX_ROWS = 1000
 PREVIEW_MAX_ROWS = 5000
 
 QUERY_TOOL = "Runs a Logical SQL query on the dataset. Columns as {Column name}, source {dataset}."
-# The system-prompt section on queries, as the model reads it (tests/fixtures/model_snapshot.json).
+# The system-prompt section on queries, as the model reads it.
 QUERY_GUIDE = """# How to query: run_query
 Write Oracle Analytics Logical SQL. In queries write columns as {Column name} and the source as {dataset}: \
 the system expands them into full references. Example:

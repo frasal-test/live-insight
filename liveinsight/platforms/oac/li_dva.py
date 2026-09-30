@@ -17,7 +17,7 @@ Rules worked out by reverse engineering (see FORMATO-DVA.md):
 - the workbook name sits in the archive headers and in the two MANIFEST.MF;
 - a visual's filters sit in its filter bar (filterControlCollections, one per visual, named like the visual),
   linked from the layout with filterControlCollectionName: workbooks "With Filters" and "More Filters" made by
-  hand in OAC (24/9), reproduced by tests/test_filters.py.
+  hand in OAC (24/9).
 """
 import copy
 import json

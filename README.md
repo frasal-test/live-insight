@@ -41,7 +41,7 @@ The UI is in English and Italian (language picker in the top bar); answers follo
 
 | What | Notes |
 |---|---|
-| **Python 3.13+** and [uv](https://docs.astral.sh/uv/) | Backend and tests |
+| **Python 3.13+** and [uv](https://docs.astral.sh/uv/) | Backend |
 | **Node.js** `^20.19` or `>=22.12` with npm | The web UI (Vite) |
 | **An Oracle Analytics Cloud instance with the MCP server** | The OAC MCP server was released as a Preview in September 2026: see Oracle's documentation to make it available on your instance. The app calls `<OAC URL>/api/mcp` |
 | **An OAC user** with access to at least one **dataset** | Tested on file-based datasets with a single table. Subject areas and datasets joining several tables are not supported |
@@ -108,7 +108,6 @@ then **Verify the model**. The quality of answers depends a lot on the model (se
 
 ```bash
 npm run dev                                                   # the app
-uv run pytest                                                 # 162 tests, no network, no tokens
 uv run python -m liveinsight.cli --dataset "Retail Orders"    # terminal chat (needs OAC_TOKENS)
 uv run python -m liveinsight.platforms.oac.login              # sign in from the terminal, writes the dev token
 uv run python -m liveinsight.engine.spec                      # rewrites docs/workbook-spec.schema.json
@@ -163,16 +162,14 @@ liveinsight/platforms/oac/       OAC adapter: MCP client, Logical SQL, catalog, 
 - One dataset per chat, single-table datasets only, no subject areas.
 - The sign-in and token-refresh endpoints are internal endpoints used by Oracle's connector, and the MCP server is a
   Preview: both can change.
-- Tested on one sample dataset (Retail Orders) on one instance. Test names and comments in `tests/` are partly in
-  Italian; the questions in the tests are Italian on purpose.
+- Tested on one sample dataset (Retail Orders) on one instance.
 
 ## Contributing
 
 Pull requests and issues are welcome, but this is a closed side project maintained on a best-effort basis: replies
 may take a while. Before opening a pull request:
 
-- Run `uv run pytest` (no network, no tokens needed) and keep it green.
-- Keep code, comments, tests and docs in English; every UI string goes in the JSON translation files.
+- Keep code, comments and docs in English; every UI string goes in the JSON translation files.
 - Never commit `.dva` files, secrets, OCIDs or your OAC instance host.
 
 Forks are of course fine under the Apache-2.0 licence.

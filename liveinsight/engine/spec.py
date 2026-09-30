@@ -42,7 +42,7 @@ class Role:
 
 # Shapes verified in OAC: templates Examples/Example 2 (one column per role) and the "Varianti" workbook
 # (line with color and with trellis, bar with two measures and with color, five-column table, sorted hbar).
-# tests/test_variants.py checks that the library reproduces exactly those structures.
+# the library reproduces exactly those structures.
 ROLES: dict[str, dict[str, Role]] = {
     "bar":       {"measures": Role(1, 3, "measure", "values; several measures = side-by-side bars"),
                   "detail": Role(1, 1, "attribute", "categories"),

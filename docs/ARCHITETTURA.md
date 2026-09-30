@@ -70,7 +70,7 @@ flowchart LR
 
 - **Schema:** [`docs/workbook-spec.schema.json`](workbook-spec.schema.json) (JSON Schema draft 2020-12), generated
   from `liveinsight/engine/spec.py` with `uv run python -m liveinsight.engine.spec`; a test fails if it is stale.
-- **Example:** [`tests/fixtures/workbook_spec.example.json`](../tests/fixtures/workbook_spec.example.json).
+- **Example:** [`docs/workbook-spec.example.json`](workbook-spec.example.json).
 - **Shape:** `version` (1) · `dataset` {`platform`, `id`, `name`} (OAC: `id` is the `xsaExpr`) · `name` ·
   `columns` (dataset columns, dates with a grain, calculations) · `canvases` → `visuals` (kind, title, roles,
   sort, filters).
@@ -86,9 +86,8 @@ flowchart LR
    reads only that JSON, and a test guarantees it.~~ Done 25/9, see above.
 2. **The folders.** ~~`engine/` and `platforms/oac/`, with the `DataSource` and `WorkbookTarget` interfaces in
    between.~~ Done 25/9: `liveinsight/engine/platform.py` holds the protocols; `OacSource`, `OacTarget` and
-   `OacPlatform` implement them; the engine imports nothing from `platforms/` (`tests/test_architecture.py`, which
-   also runs the engine on an in-memory non-OAC source). Same behaviour: the prompt and tools the model reads are
-   frozen in `tests/fixtures/model_snapshot.json` and did not change.
+   `OacPlatform` implement them; the engine imports nothing from `platforms/`. Same behaviour: the prompt and tools
+   the model reads did not change.
 3. **Remove OAC from the spec** (not pursued). Neutral calculations, abstract dataset reference, neutral filter values (e.g.
    `2016-Q1`, turned into OAC labels by the adapter).
 4. **A second platform, as a proof** (not pursued). Natural candidate: Power BI with the PBIP project format
@@ -302,7 +301,7 @@ sequenceDiagram
 | `App.tsx` | The page: three columns — dataset and future history, streamed conversation with visuals inside the answers and follow-ups as buttons, Workbook panel with "Save to OAC", "Download .dva" and "Download the workbook spec (JSON)". "To do" placeholders. |
 | `Preview.tsx` | Draws previews: Vega-Lite, table, pivot, tile; numbers in the UI language. For map, radar, box plot and narrative it shows the "stand-in preview" note. |
 | `Settings.tsx` | Settings page: fields of the chosen provider only (compartment for OCI, server URL for an OpenAI-compatible server), key never shown ("saved"), "Other model…" and "Verify the model". Opens by itself when no model is chosen. |
-| `i18n.ts`, `I18nProvider.tsx`, `locales/*.json` | UI language: `t()` with placeholders and plurals, no library; `tm()` for backend messages, `localize()` for `⟦key⟧` tokens in previews, `err()` for errors; language picker; one JSON per language with the same keys, every key used by the frontend or the backend checked by `tests/test_locales.py`. The chat keeps data, not sentences, so a language switch translates everything already shown. |
+| `i18n.ts`, `I18nProvider.tsx`, `locales/*.json` | UI language: `t()` with placeholders and plurals, no library; `tm()` for backend messages, `localize()` for `⟦key⟧` tokens in previews, `err()` for errors; language picker; one JSON per language with the same keys, every key used by the frontend or the backend present in both. The chat keeps data, not sentences, so a language switch translates everything already shown. |
 | `api.ts` | Backend calls and the chat SSE stream reader (EventSource only does GET). |
 | `vite.config.ts` | Proxies `/api` to the backend: the cookie stays on the UI origin. |
 
@@ -346,7 +345,6 @@ sequenceDiagram
 
 | Module | What it does |
 |---|---|
-| `tests/` | 178 tests, no network or tokens: backend with fake MCP and model, compiler, variants reproduced exactly from OAC, filters, previews, token renewal, translations, the contract, the architecture, the model snapshot. |
 | `spikes/`, `dva-lab/` | Checks done on OAC (MCP, catalog, import) and the .dva format documentation. |
 
 ## 8. Rules the code enforces

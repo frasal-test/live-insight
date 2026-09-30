@@ -1,7 +1,7 @@
 """Structural checks on a workbook definition and on a generated .dva.
 
-The rules of FORMATO-DVA.md turned into checks: the app runs them before offering a file, the tests run them on
-every visual kind. Every function returns a list of problems (empty = ok).
+The rules of FORMATO-DVA.md turned into checks: the app runs them before offering a file, they were also run on
+every visual kind while developing. Every function returns a list of problems (empty = ok).
 """
 import json
 import re

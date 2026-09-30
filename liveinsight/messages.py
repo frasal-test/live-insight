@@ -4,7 +4,7 @@ Two forms, both resolved by the frontend with web/src/locales/*.json in the lang
 - msg(key, **params): a message, {"key": ..., "params": {...}}, for notes, errors and notices;
 - token(key): "⟦key⟧" inside a string the frontend does not build itself (Vega-Lite titles, column labels):
   the frontend replaces every token before drawing, so a language switch also translates what is already shown.
-tests/test_locales.py checks that every key used here exists in every language.
+Every key used here must exist in every language file.
 
 What the model reads is not here: it is English, in prompt.py and session.py.
 """

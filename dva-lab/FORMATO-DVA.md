@@ -206,7 +206,6 @@ In `filterControlCollections.children[]`, an entry with `name` = the visual's na
 
 Supported by the generator since 24/9 (`Workbook.filter_control`): list filters on attributes and periods, number
 ranges on measures, date ranges on days, reproduced exactly from workbooks made by hand
-(`tests/test_filters.py`, fixtures in `tests/fixtures/oac/`).
 
 **Dates:** the grain is in the expression (`ExtractMonth(...)`, `ExtractYear(...)`) plus an entry in
 `criteriaConfig.settings.columnPropertyMap` with `timeLevel` (`month`, `year`, `quarter`) and `parentExpression` =
@@ -291,7 +290,7 @@ with color, five-column table, sorted hbar, line with trellis), compared with th
 
 Hence `resize_roles()` in `liveinsight/platforms/oac/li_dva.py`: the template with exactly the requested roles is
 chosen; for every role the template's first column is the prototype and in **all** the lists that name it, it becomes
-one copy per requested column; the template's other columns are removed. `tests/test_variants.py` checks that the
+one copy per requested column; the template's other columns are removed. The one-column templates give **exactly** the structures OAC saved.
 one-column templates give **exactly** the structures OAC saved.
 
 **Sorting** (`set_sort`): `columnSort.measureSorts` (row and column axes, `descending`/`ascending`) on the measure's

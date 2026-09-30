@@ -1,4 +1,4 @@
-// UI translations: one JSON per language in ./locales, all with the same keys (tests/test_locales.py checks it).
+// UI translations: one JSON per language in ./locales, all with the same keys.
 // No i18n library: the npm registry is blocked on the corporate network and we only need lookup, {placeholder}
 // interpolation and plurals. Plurals follow the i18next convention (key_one, key_other) and Intl.PluralRules.
 // The backend sends no UI prose (liveinsight/messages.py): messages {key, params}, written here with tm(), and
