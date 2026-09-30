@@ -166,11 +166,16 @@ liveinsight/platforms/oac/       OAC adapter: MCP client, Logical SQL, catalog, 
 
 ## Contributing
 
-Pull requests and issues are welcome, but this is a closed side project maintained on a best-effort basis: replies
-may take a while. Before opening a pull request:
+Issues and pull requests are welcome, but this is a closed side project maintained on a best-effort basis: replies
+may take a while, and some changes may be declined to keep it small.
 
-- Keep code, comments and docs in English; every UI string goes in the JSON translation files.
-- Never commit `.dva` files, secrets, OCIDs or your OAC instance host.
+This repository has no automated test suite, and the app needs a live OAC instance to run end to end. So a pull
+request should:
+
+- stay small and focused, one change at a time;
+- say in its description how you checked it (for example, which dataset and which questions you tried);
+- keep code, comments and docs in English, with every UI string in the JSON translation files;
+- never include `.dva` files, secrets, OCIDs or your OAC instance host.
 
 Forks are of course fine under the Apache-2.0 licence.
 
